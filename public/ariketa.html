@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        // see Constraint Validation API 
+        // https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation
+
+        let check = () => {
+            
+            let bidaltzekoOK = true;
+
+            let izen = document.getElementById("izena");
+            izen.setCustomValidity("");
+
+            let izena = izena.value;
+            let izenaRegex = /^[A-Z][a-z]+$/;
+            if (!izenaRegex.test(izena)) {
+                abizen.setCustomValidity("Soilik letrak onartzen dira eta lehenengo letra larria izan behar da");
+                bidaltzekoOK = false;
+            }
+
+            return bidaltzekoOK;
+        }
+
+        window.onload = () => {
+            document.getElementById("izena").oninput = check;
+            document.querySelector("#formularioa").addEventListener("submit", (e) => {
+                e.preventDefault();
+                if (check()) e.target.submit();
+            });
+
+        };
+    </script>
+</head>
+<body>
+    <form action="/bezeroa" method="POST" id="formularioa">
+        Name: <input type="text" name="izena" required><br>
+        
+        <input type="submit" value="Bidali">
+    </form>
+</body>
+</html>
