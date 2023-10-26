@@ -53,6 +53,7 @@ app.post("/bezeroa", function(req,res) {
 app.get('/delete/:email', function(req, res) {
     let bezeroak2 = bezeroak.filter( bezeroa => bezeroa.email!=req.params.email );
     bezeroak = bezeroak2;
+    res.redirect("/");
 });
 
 
