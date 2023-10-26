@@ -1,11 +1,17 @@
-let express = require('express');
-let app = express();
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false }));
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'))
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.get("/", function(req, res) {
-    res.send("Kaixo mundua!");
-    });
+    res.render('index', {
+    'izenburua': 'EJS probatzen'
+    })
+});   
 
  app.listen( 3000, function() {
      console.log("Zerbitzaria 3000 portuan entzuten");
