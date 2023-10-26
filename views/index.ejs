@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title><%=izenburua %></title>
+<title><%=izenburua%></title>
 </head>
 <body>
 Kaixo EJS txantiloi kudeatzailetik
-</body>
-</html>
+<ul>
+<% bezeroak.forEach( function(bezeroa) { %>
+<li><%=bezeroa.izena %> <%=bezeroa.abizena%> <a href="/delete/<%= bezeroa.email %>">[x]</a></li>
+<% }) %>
+</ul>
+<form action="/bezeroa" method="POST">
+    Izena: <input type="text" name="izena">
+    Abizena: <input type="text" name="abizena">
+    Korreoa: <input type="text" name="korreoa"><input
+    ,! type="submit" value="Bidali">
+</form>
+</body></html>
